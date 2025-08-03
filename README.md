@@ -1,107 +1,68 @@
-# RNA-EFM: Energy Based Flow Matching for Protein-conditioned RNA Sequence-Structure Co-design
+# CFM-GP: Unified Conditional Flow Matching to Learn Gene Perturbation Across Cell Types
 
-## 🧬 Overview
+##  Overview
 
-**RNA-EFM** is a deep learning framework for jointly designing RNA sequences and backbone structures conditioned on a target protein. The method integrates **flow matching** for geometric alignment and **biophysically-informed energy refinement** to generate RNA molecules that are both structurally accurate and thermodynamically stable. 
+Understanding gene perturbation effects across diverse cellular contexts is a central challenge in functional genomics, with significant implications for therapeutic discovery and precision medicine. While single-cell technologies enable high-resolution measurement of transcriptional responses, collecting such data remains expensive and time-intensive, especially when repeated for each cell type. Existing computational methods attempt to predict these responses but typically require separate models per cell type, limiting scalability and generalization.
 
-The framework leverages recent advances in geometric deep learning and incorporates biophysical constraints, such as **Lennard-Jones potential** and **sequence-derived free energy**, into an iterative refinement process guided by an **idempotent objective**.
+CFM-GP (**C**onditional **F**low **M**atching for **G**ene **P**erturbation) is a novel deep learning framework that learns a continuous, time-dependent transformation between unperturbed and perturbed gene expression distributions, conditioned on cell type. This allows a single model to predict the transcriptional effect of a perturbation across all cell types, eliminating the need for cell type–specific training. CFM-GP employs the **flow matching objective** to model perturbation dynamics in a scalable manner.
 
-## 🔬 Key Novelties
+##  Key Features
 
-- **Protein-conditioned RNA co-design**: Joint prediction of RNA sequence and 3D backbone structure based on the input protein complex.
-- **Energy-based refinement**: Incorporates physically meaningful constraints (e.g., van der Waals interactions and free energy) during training.
-- **Flow Matching Objective**: Supervises geometric alignment between predicted and native RNA structures via interpolation-based learning.
-- **Idempotent Refinement**: Predictive consistency is enforced by repeatedly applying the structure predictor until convergence.
-- **Biological Relevance**: Designed RNAs exhibit improved thermodynamic stability and better binding affinity with the target protein.
+- **Cell Type–Agnostic Prediction**: Learns perturbation effects across all cell types via a single model, with no need for cell type–specific retraining.
+- **Continuous Trajectory Modeling**: Utilizes a novel vector field formulation to learn time-dependent perturbation trajectories, conditioned on both cell identity and time.
+- **Generalization Across Contexts**: Capable of transferring perturbation knowledge across domains, including across species boundaries.
+- **Biological Fidelity**: Accurately recovers pathway activity as confirmed by pathway enrichment analysis.
 
 
-## RNA-EFM Framework
-![RNA-EFM Framework](cfm.pdf)
 
-## 🛠️ Installation
+## CFM-GP Framework
+![CFM-GP Framework](cfm.png)
 
-```bash
-git clone https://github.com/abrarrahmanabir/RNA-EFM.git
-cd RNA-EFM
-
-```
-## 🔧 Environment Setup
-
-All external dependencies are listed in \`environment.yml\`. To set up the conda environment:
+##  Installation and Environment Setup
 
 ```bash
-conda env create -f environment.yml
-conda activate rnaefm
+git clone https://github.com/abrarrahmanabir/CFM-GP.git
+cd CFM-GP
+pip install -r requirements.txt
+
 ```
-
-Additionally, install the following libraries manually (with CUDA compatibility if needed):
-
-```bash
-pip install torch-scatter torch-cluster openmm
-```
-
----
-
 
 ## 📂 Dataset Access
 
-The dataset used in this study can be downloaded from the following Google Drive link:
+The five fully processed datasets used in this study can be downloaded from the following Google Drive link:
 
-👉 [RNA-EFM Dataset (Google Drive)](https://drive.google.com/drive/folders/1FPLLauKuGemoJQRoMhqmht_MRLbCgEEV?usp=sharing)
+👉 [CFM-GP Dataset (Google Drive)](https://drive.google.com/file/d/1sJxHM4te1CNShBLUrLVEGPrkEbOjM7mk/view?usp=sharing)
 
 After downloading, extract the contents and place them under the following directory:
 
 ```
-rnaefm/data/
-```
-
-This folder will contain all necessary files required to train and evaluate RNA-EFM.
+./data/
+``
+This folder will contain all necessary files required to train and evaluate CFM-GP.
 
 ---
 
 
 ##  Running Inference
 
-Once the environment is set up and dependencies are installed, you can run inference to generate RNA sequences and structures conditioned on protein backbones:
+Once the environment is set up and dependencies are installed, you can run inference using our trained models provided in `./model/` directory. We have provided a bash script containing all the necessary commands to run inference for all five datasets. After running, the results will be saved in `<dataset>_results` directory, which will contain three CSV files containing R squared value, MMD and Spearman's rank correlation coefficient for each cell type.
 
 ```bash
-python scripts/inference.py 
+bash test_script.sh 
 ```
-
-RNA-EFM will automatically preprocess the input, generate interpolated backbones, and output the designed RNA structures and sequences.
 
 ---
 
 ## Training Instructions
 
-To train RNA-EFM from scratch:
-
-1. **Download RF2NA Weights**  
-   Download the pre-trained RF2NA weights from:
-
-   https://files.ipd.uw.edu/dimaio/RF2NA_apr23.tgz
-
-2. **Place the checkpoint** at:
-
-   `RoseTTAFold2NA/network/weights/RF2NA_apr23.pt`
-
-3. **Start Training**  
-   Run the following command:
+To train CFM-GP from scratch for all the datasets, run the following command. This will save the trained models in `./model/` directory.
 
 ```bash
-python scripts/train.py
+bash train_script.sh
 ```
 
 
 ---
-
-
-## 🔗 Acknowledgement
-
-This codebase builds upon and extends the RNAFlow framework. We gratefully acknowledge their contributions and recommend citing their work if you use this repository:
-
-> **RNAFlow: Protein-Conditioned RNA Structure and Sequence Co-Design**. arXiv preprint [arXiv:2405.18768](https://arxiv.org/abs/2405.18768), 2024.  
-> [https://arxiv.org/pdf/2405.18768](https://arxiv.org/pdf/2405.18768)
 
 
 
