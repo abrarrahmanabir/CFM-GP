@@ -45,7 +45,7 @@ This folder will contain all necessary files required to train and evaluate CFM-
 
 ## Running Inference
 
-Once the environment is set up and dependencies are installed, you can run inference using our trained models provided in `./model/` directory. We have provided a bash script containing all the necessary commands to run inference for all five datasets. After running, the results will be saved in `<dataset>_results` directory, which will contain three CSV files containing R squared value, MMD and Spearman's rank correlation coefficient for each cell type.
+Once the environment is set up and dependencies are installed, you can run inference using our trained models provided in `./model/` directory. We have provided a bash script containing all the necessary commands to run inference for all five datasets. After running, the results will be saved in `<dataset>_results` directory, which will contain three CSV files containing R squared value, MMD and Spearman's rank correlation coefficient for each cell type. Finally, use GPU to run the code.
 
 ```bash
 bash test_script.sh 
@@ -55,7 +55,7 @@ bash test_script.sh
 
 ## Training Instructions
 
-To train CFM-GP from scratch for all the datasets, run the following command. This will save the trained models in `./model/` directory.
+To train CFM-GP from scratch for all the datasets, run the following command. This will save the trained models in `./model/` directory. Finally, use GPU to run the code.
 
 ```bash
 bash train_script.sh
