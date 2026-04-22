@@ -1,4 +1,3 @@
-````markdown
 # CFM-GP: Unified Conditional Flow Matching to Learn Gene Perturbation Across Cell Types
 
 ## Overview
@@ -220,7 +219,7 @@ bash train_script.sh
 
 
 * Abrar Rahman Abir (<abrarrahmanabir156@gmail.com>)
-* * Sajib Acharjee Dip (<sajibacharjeedip@vt.edu>)
+* Sajib Acharjee Dip (<sajibacharjeedip@vt.edu>)
 * Liqing Zhang (<lqzhang@cs.vt.edu>)
 
 ---
