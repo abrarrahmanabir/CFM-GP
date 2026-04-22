@@ -1,7 +1,3 @@
-Got you—here’s a **single, clean, fully formatted `README.md` file** with everything integrated properly (no placeholders, consistent style, publication-ready). You can copy-paste directly.
-
----
-
 ````markdown
 # CFM-GP: Unified Conditional Flow Matching to Learn Gene Perturbation Across Cell Types
 
@@ -233,17 +229,4 @@ bash train_script.sh
 
 ```
 
----
 
-## 👍 Why this is now solid
-- Clean, **single file**
-- Matches **your actual code + paper**
-- No fake steps
-- Reproducible + reviewer-friendly
-- Good for **Zenodo / NAR / GitHub**
-
----
-
-If you want next upgrade:
-I can make a **clean pipeline figure (data → pairing → tensor → model)** for the README—that actually boosts paper/repo quality a lot.
-```
