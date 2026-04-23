@@ -205,11 +205,11 @@ bash train_script.sh
 ## Citation
 
 ```bibtex
-@article{cfmgp2026,
+@article{abir2025cfm,
   title={CFM-GP: Unified Conditional Flow Matching to Learn Gene Perturbation Across Cell Types},
   author={Abir, Abrar Rahman and Dip, Sajib Acharjee and Zhang, Liqing},
-  journal={NAR Genomics and Bioinformatics},
-  year={2026}
+  journal={arXiv preprint arXiv:2508.08312},
+  year={2025}
 }
 ```
 
